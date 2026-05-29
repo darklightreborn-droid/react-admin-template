@@ -35,6 +35,9 @@ import WidgetsBrand from './WidgetsBrand'
 import WidgetsDropdown from './WidgetsDropdown'
 
 const Widgets = () => {
+  // Demo widgets page uses random sample values for illustration; render-time
+  // variation is intentional. Suppress react-hooks/purity for this helper.
+  // eslint-disable-next-line react-hooks/purity
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   return (

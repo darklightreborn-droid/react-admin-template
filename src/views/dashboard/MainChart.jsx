@@ -30,6 +30,9 @@ const MainChart = () => {
       document.documentElement.removeEventListener('ColorSchemeChange', handleColorSchemeChange)
   }, [chartRef])
 
+  // Demo dashboard chart uses random sample data for illustration; render-time
+  // randomness is intentional. Suppress react-hooks/purity for this helper.
+  // eslint-disable-next-line react-hooks/purity
   const random = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1)) + min
 
   return (

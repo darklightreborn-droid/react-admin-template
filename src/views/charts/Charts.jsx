@@ -11,6 +11,10 @@ import {
 import { DocsLink } from 'src/components'
 
 const Charts = () => {
+  // Demo page generates random sample data for example charts; the
+  // visual variation per render is intentional. Suppress react-hooks/purity
+  // for this demo-only helper.
+  // eslint-disable-next-line react-hooks/purity
   const random = () => Math.round(Math.random() * 100)
 
   return (
