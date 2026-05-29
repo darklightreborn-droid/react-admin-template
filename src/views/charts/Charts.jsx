@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
 import {
   CChartBar,
@@ -11,7 +11,15 @@ import {
 import { DocsLink } from 'src/components'
 
 const Charts = () => {
-  const random = () => Math.round(Math.random() * 100)
+  // Compute random demo data once per mount via useState's lazy initializer.
+  // Math.random is impure, so it may not run inline during render
+  // (react-hooks/purity); useState(fn) only runs fn on first render.
+  const [lineDatasetA] = useState(() =>
+    Array.from({ length: 7 }, () => Math.round(Math.random() * 100)),
+  )
+  const [lineDatasetB] = useState(() =>
+    Array.from({ length: 7 }, () => Math.round(Math.random() * 100)),
+  )
 
   return (
     <CRow>
@@ -54,7 +62,7 @@ const Charts = () => {
                     borderColor: 'rgba(220, 220, 220, 1)',
                     pointBackgroundColor: 'rgba(220, 220, 220, 1)',
                     pointBorderColor: '#fff',
-                    data: [random(), random(), random(), random(), random(), random(), random()],
+                    data: lineDatasetA,
                   },
                   {
                     label: 'My Second dataset',
@@ -62,7 +70,7 @@ const Charts = () => {
                     borderColor: 'rgba(151, 187, 205, 1)',
                     pointBackgroundColor: 'rgba(151, 187, 205, 1)',
                     pointBorderColor: '#fff',
-                    data: [random(), random(), random(), random(), random(), random(), random()],
+                    data: lineDatasetB,
                   },
                 ],
               }}

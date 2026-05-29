@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle } from '@coreui/utils'
@@ -30,7 +30,12 @@ const MainChart = () => {
       document.documentElement.removeEventListener('ColorSchemeChange', handleColorSchemeChange)
   }, [chartRef])
 
-  const random = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1)) + min
+  // Compute random demo datasets once per mount; calling Math.random during
+  // render violates react-hooks/purity. useMemo gives stable values.
+  const randomSeries = (min, max, length) =>
+    Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1)) + min)
+  const datasetA = useMemo(() => randomSeries(50, 200, 7), [])
+  const datasetB = useMemo(() => randomSeries(50, 200, 7), [])
 
   return (
     <>
@@ -46,15 +51,7 @@ const MainChart = () => {
               borderColor: getStyle('--cui-info'),
               pointHoverBackgroundColor: getStyle('--cui-info'),
               borderWidth: 2,
-              data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-              ],
+              data: datasetA,
               fill: true,
             },
             {
@@ -63,15 +60,7 @@ const MainChart = () => {
               borderColor: getStyle('--cui-success'),
               pointHoverBackgroundColor: getStyle('--cui-success'),
               borderWidth: 2,
-              data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-              ],
+              data: datasetB,
             },
             {
               label: 'My Third dataset',

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
   CCard,
   CCardBody,
@@ -35,7 +35,16 @@ import WidgetsBrand from './WidgetsBrand'
 import WidgetsDropdown from './WidgetsDropdown'
 
 const Widgets = () => {
-  const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  // Compute random demo datasets once per mount; calling Math.random during
+  // render violates react-hooks/purity. useMemo gives stable values.
+  const randomSeries = (min, max, length) =>
+    Array.from({ length }, () => Math.floor(Math.random() * (max - min + 1) + min))
+  const chartData1 = useMemo(() => randomSeries(40, 100, 15), [])
+  const chartData2 = useMemo(() => randomSeries(40, 100, 15), [])
+  const chartData3 = useMemo(() => randomSeries(40, 100, 15), [])
+  const chartData4 = useMemo(() => randomSeries(40, 100, 15), [])
+  const chartData5 = useMemo(() => randomSeries(40, 100, 15), [])
+  const chartData6 = useMemo(() => randomSeries(40, 100, 15), [])
 
   return (
     <CCard className="mb-4">
@@ -155,23 +164,7 @@ const Widgets = () => {
                           backgroundColor: getStyle('--cui-danger'),
                           borderColor: 'transparent',
                           borderWidth: 1,
-                          data: [
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                          ],
+                          data: chartData1,
                         },
                       ],
                     }}
@@ -226,23 +219,7 @@ const Widgets = () => {
                           backgroundColor: getStyle('--cui-primary'),
                           borderColor: 'transparent',
                           borderWidth: 1,
-                          data: [
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                          ],
+                          data: chartData2,
                         },
                       ],
                     }}
@@ -297,23 +274,7 @@ const Widgets = () => {
                           backgroundColor: getStyle('--cui-success'),
                           borderColor: 'transparent',
                           borderWidth: 1,
-                          data: [
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                          ],
+                          data: chartData3,
                         },
                       ],
                     }}
@@ -368,23 +329,7 @@ const Widgets = () => {
                           backgroundColor: 'transparent',
                           borderColor: getStyle('--cui-danger'),
                           borderWidth: 2,
-                          data: [
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                          ],
+                          data: chartData4,
                         },
                       ],
                     }}
@@ -447,23 +392,7 @@ const Widgets = () => {
                           backgroundColor: 'transparent',
                           borderColor: getStyle('--cui-success'),
                           borderWidth: 2,
-                          data: [
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                          ],
+                          data: chartData5,
                         },
                       ],
                     }}
@@ -526,23 +455,7 @@ const Widgets = () => {
                           backgroundColor: 'transparent',
                           borderColor: getStyle('--cui-info'),
                           borderWidth: 2,
-                          data: [
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                            random(40, 100),
-                          ],
+                          data: chartData6,
                         },
                       ],
                     }}
