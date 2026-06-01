@@ -11,6 +11,7 @@ import {
 import { DocsLink } from 'src/components'
 
 const Charts = () => {
+  // eslint-disable-next-line react-hooks/purity -- demo page intentionally renders fresh mock data each mount
   const random = () => Math.round(Math.random() * 100)
 
   return (

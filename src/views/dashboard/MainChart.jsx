@@ -30,6 +30,7 @@ const MainChart = () => {
       document.documentElement.removeEventListener('ColorSchemeChange', handleColorSchemeChange)
   }, [chartRef])
 
+  // eslint-disable-next-line react-hooks/purity -- demo chart intentionally renders fresh mock data each mount
   const random = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1)) + min
 
   return (
