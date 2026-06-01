@@ -30,12 +30,6 @@ import {
   cibGoogle,
   cibFacebook,
   cibLinkedin,
-  cifBr,
-  cifEs,
-  cifFr,
-  cifIn,
-  cifPl,
-  cifUs,
   cibTwitter,
   cilCloudDownload,
   cilPeople,
@@ -93,7 +87,6 @@ const Dashboard = () => {
         new: true,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'USA', flag: cifUs },
       usage: {
         value: 50,
         period: 'Jun 11, 2023 - Jul 10, 2023',
@@ -109,7 +102,6 @@ const Dashboard = () => {
         new: false,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'Brazil', flag: cifBr },
       usage: {
         value: 22,
         period: 'Jun 11, 2023 - Jul 10, 2023',
@@ -121,7 +113,6 @@ const Dashboard = () => {
     {
       avatar: { src: avatar3, status: 'warning' },
       user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2023' },
-      country: { name: 'India', flag: cifIn },
       usage: {
         value: 74,
         period: 'Jun 11, 2023 - Jul 10, 2023',
@@ -133,7 +124,6 @@ const Dashboard = () => {
     {
       avatar: { src: avatar4, status: 'secondary' },
       user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2023' },
-      country: { name: 'France', flag: cifFr },
       usage: {
         value: 98,
         period: 'Jun 11, 2023 - Jul 10, 2023',
@@ -149,7 +139,6 @@ const Dashboard = () => {
         new: true,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'Spain', flag: cifEs },
       usage: {
         value: 22,
         period: 'Jun 11, 2023 - Jul 10, 2023',
@@ -165,7 +154,6 @@ const Dashboard = () => {
         new: true,
         registered: 'Jan 1, 2023',
       },
-      country: { name: 'Poland', flag: cifPl },
       usage: {
         value: 43,
         period: 'Jun 11, 2023 - Jul 10, 2023',
@@ -330,14 +318,11 @@ const Dashboard = () => {
                       <CIcon icon={cilPeople} />
                     </CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">User</CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary text-center">
-                      Country
-                    </CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary">Usage</CTableHeaderCell>
+                    <CTableHeaderCell className="bg-body-tertiary">Activity</CTableHeaderCell>
                     <CTableHeaderCell className="bg-body-tertiary text-center">
                       Payment Method
                     </CTableHeaderCell>
-                    <CTableHeaderCell className="bg-body-tertiary">Activity</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -353,9 +338,6 @@ const Dashboard = () => {
                           {item.user.registered}
                         </div>
                       </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
-                      </CTableDataCell>
                       <CTableDataCell>
                         <div className="d-flex justify-content-between text-nowrap">
                           <div className="fw-semibold">{item.usage.value}%</div>
@@ -365,12 +347,12 @@ const Dashboard = () => {
                         </div>
                         <CProgress thin color={item.usage.color} value={item.usage.value} />
                       </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
-                      </CTableDataCell>
                       <CTableDataCell>
                         <div className="small text-body-secondary text-nowrap">Last login</div>
                         <div className="fw-semibold text-nowrap">{item.activity}</div>
+                      </CTableDataCell>
+                      <CTableDataCell className="text-center">
+                        <CIcon size="xl" icon={item.payment.icon} />
                       </CTableDataCell>
                     </CTableRow>
                   ))}
